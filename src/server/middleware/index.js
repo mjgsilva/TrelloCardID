@@ -7,6 +7,7 @@ import expressWinston from 'express-winston';
 import path from 'path';
 import winston from 'winston';
 
+import setupAPI from './api';
 
 function setupViews(app: Object): void {
   app.set('views', path.join(__dirname, '../views'));
@@ -52,16 +53,11 @@ function setupErrorHandling(app: Object): void {
   });
 }
 
-/* Routes setup
-var index = require('./routes/index');
-var users = require('./routes/users');
-app.use('/', index);
-app.use('/users', users);
-*/
 
 function setupMiddleware(app: Object): void {
   setupViews(app);
   setupLogger(app);
+  setupAPI(app);
   setupUtils(app);
   setupErrorHandling(app);
 }
