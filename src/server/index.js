@@ -6,7 +6,7 @@ import Promise from 'bluebird';
 import setupMiddleware from './middleware';
 import Server from './server';
 
-function init(): Promise {
+function init(): Promise<any> {
   const app = express();
   setupMiddleware(app);
   const server = new Server(app);

@@ -13,7 +13,7 @@ function Server(app: Object) {
 }
 
 
-Server.prototype.start = function start(port: string, host: Object): Promise {
+Server.prototype.start = function start(port: string, host: Object): Promise<any> {
   const self = this;
 
   return new Promise((resolve, reject) => {
