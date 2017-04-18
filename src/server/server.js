@@ -2,8 +2,8 @@
 
 import Promise from 'bluebird';
 
-import errors from './errors';
-import errorsServer from './errors/en';
+import logger from './logger';
+import errorsServer from './logger/err_en';
 import { isPortValid } from './utils';
 
 
@@ -18,20 +18,20 @@ Server.prototype.start = function start(port: string, host: Object): Promise<any
 
   return new Promise((resolve, reject) => {
     if (!self.app) {
-      reject(errors.createError(errorsServer.server.appNotDefined));
+      reject(logger.createError(errorsServer.server.appNotDefined));
     } else if (!port || !host) {
-      reject(errors.createError(errorsServer.server.invalidParams));
+      reject(logger.createError(errorsServer.server.invalidParams));
     } else if (!isPortValid(port)) {
-      reject(errors.createError(errorsServer.server.invalidPort));
+      reject(logger.createError(errorsServer.server.invalidPort));
     }
 
     self.server = self.app.listen(port, host);
 
     self.server.on('error', (err) => {
       if (err.errno === 'EADDRINUSE') {
-        reject(errors.createError(errorsServer.server.addressInUse(port)));
+        reject(logger.createError(errorsServer.server.addressInUse(port)));
       } else {
-        reject(errors.createError(errorsServer.server.errorOnStart(err.errno)));
+        reject(logger.createError(errorsServer.server.errorOnStart(err.errno)));
       }
     });
 
@@ -44,7 +44,7 @@ Server.prototype.start = function start(port: string, host: Object): Promise<any
 
 
 Server.prototype.serverListening = function serverListening(): void {
-  errors.logInfo('Trello Card ID - Up and running!');
+  logger.logInfo('Trello Card ID - Up and running!');
 };
 
 module.exports = Server;

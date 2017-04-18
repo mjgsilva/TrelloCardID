@@ -5,7 +5,8 @@ import express from 'express';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Trello Card ID' });
+  req.logout();
+  res.redirect('/');
 });
 
 module.exports = router;

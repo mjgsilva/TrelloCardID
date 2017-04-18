@@ -61,5 +61,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# Docker
+data
+docker-compose.yml
 
 # End of https://www.gitignore.io/api/node

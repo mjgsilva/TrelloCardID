@@ -7,7 +7,7 @@ const logger = new (winston.Logger)({
   transports: [new (winston.transports.Console)({ colorize: true })],
 });
 
-const errors = {
+const customLogger = {
 
   logError(error: Error): void {
     logger.error(error.message);
@@ -26,6 +26,12 @@ const errors = {
 
   logErrorAndExit(error: Error): void {
     this.logError(error);
+    process.exit(-1);
+  },
+
+
+  logWarnAndExit(error: Error): void {
+    this.logWarn(error);
     process.exit(-1);
   },
 
@@ -49,4 +55,4 @@ const errors = {
   },
 };
 
-module.exports = errors;
+module.exports = customLogger;
