@@ -1,15 +1,11 @@
 // @flow
 
 import express from 'express';
-import passport from 'passport';
-
-import helpers from './helpers';
 
 const router = express.Router();
-const env = helpers.getAuthVars();
 
 router.get('/', (req, res) => {
-  res.render('login', { env });
+  res.render('login');
 });
 
 module.exports = router;

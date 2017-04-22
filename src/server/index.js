@@ -9,7 +9,7 @@ import Server from './server';
 
 function init(): Promise<any> {
   const app = express();
-  //setupDB();
+  setupDB();
   setupMiddleware(app);
   const server = new Server(app);
   return Promise.resolve(server);
