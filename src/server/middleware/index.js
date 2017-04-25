@@ -36,13 +36,7 @@ function setupLogger(app: Object): void {
 
 function setupUtils(app: Object): void {
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(cookieParser());
-  app.use(session({
-    secret: process.env.COOKIE_SECRET,
-    resave: true,
-    saveUninitialized: true,
-  }));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(express.static(path.join(__dirname, '../public')));
 }
 
