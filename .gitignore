@@ -65,4 +65,7 @@ typings/
 data
 docker-compose.yml
 
+# Nodemon
+nodemon.json
+
 # End of https://www.gitignore.io/api/node

@@ -7,26 +7,25 @@
     "eslint": "eslint --ext .js",
     "eslint-all": "eslint --ext .js src/*",
     "flow": "flow status",
-    "start": "babel-node ./src/index"
+    "start": "PORT=3030 babel-node ./src/index",
+    "dev": "PORT=3030 nodemon ./src/index --exec babel-node"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "~1.17.1",
-    "connect-ensure-login": "^0.1.1",
     "cookie-parser": "~1.4.3",
+    "cors": "^2.8.3",
     "debug": "~2.6.3",
     "dotenv": "^4.0.0",
     "express": "~4.15.2",
-    "express-session": "^1.15.2",
+    "express-jwt": "^5.3.0",
     "express-winston": "^2.3.0",
     "jade": "~1.11.0",
+    "jwks-rsa": "^1.1.1",
     "lodash": "^4.17.4",
     "mongoose": "^4.9.5",
     "mongoose-auto-increment": "^5.0.1",
     "morgan": "~1.8.1",
-    "oauth": "^0.9.15",
-    "passport": "^0.3.2",
-    "passport-auth0": "^0.6.0",
     "serve-favicon": "~2.4.2",
     "session-memory-store": "^0.2.2",
     "winston": "^2.3.1"
@@ -42,6 +41,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "flow-bin": "^0.44.0",
-    "flow-typed": "^2.0.0"
+    "flow-typed": "^2.0.0",
+    "nodemon": "^1.11.0"
   }
 }

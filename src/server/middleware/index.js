@@ -1,23 +1,18 @@
 // @flow
 
 import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import expressWinston from 'express-winston';
+import jwt from 'express-jwt';
+import jwks from 'jwks-rsa';
 import path from 'path';
-import session from 'express-session';
 import winston from 'winston';
 
 import setupAPI from './api/index';
 
 dotenv.config();
-
-
-function setupViews(app: Object): void {
-  app.set('views', path.join(__dirname, '../views'));
-  app.set('view engine', 'jade');
-}
 
 
 function setupLogger(app: Object): void {
@@ -37,7 +32,7 @@ function setupLogger(app: Object): void {
 function setupUtils(app: Object): void {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(express.static(path.join(__dirname, '../public')));
+  app.use(cors());
 }
 
 
@@ -59,10 +54,9 @@ function setupErrorHandling(app: Object): void {
 
 
 function setupMiddleware(app: Object): void {
-  setupViews(app);
   setupLogger(app);
-  setupAPI(app);
   setupUtils(app);
+  setupAPI(app);
   setupErrorHandling(app);
 }
 
