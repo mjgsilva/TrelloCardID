@@ -1,9 +1,9 @@
 import React from 'react';
 
+import NavbarContainer from './NavbarContainer';
+
 const Landing = () => {
-  return (
-    <h1>Welcome to Trello Card ID</h1>
-  );
+  return <NavbarContainer />;
 }
 
 export default Landing;
