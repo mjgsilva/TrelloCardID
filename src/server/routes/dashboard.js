@@ -1,30 +1,29 @@
 // @flow
 
 import express from 'express';
-import dotenv from 'dotenv';
-import jwt from 'express-jwt';
-import jwks from 'jwks-rsa';
+import Promise from 'bluebird';
+
+import Authzero from '../models/authzero';
+import User from '../models/user';
+import AccessToken from '../models/access_token';
+import Counter from '../models/counter';
+import { getUserInfo } from '../services/authzero';
+
+import { authCheck } from '../authorization/index';
 
 const router = express.Router();
 
-dotenv.config();
+router.get('/', authCheck(), (req, res) => {
+  const { sub: userID } = req.user;
 
-// TODO: Move this
-const authCheck = jwt({
-  secret: jwks.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: process.env.AUTH0_URI,
-  }),
-  audience: process.env.AUTH0_AUDIENCE,
-  issuer: process.env.AUTH0_ISSUER,
-  algorithms: ['RS256'],
-});
+  Authzero
+  .getAccessToken()
+  .then((accessToken) => getUserInfo(accessToken, userID))
+  .then((email) => User.getUserID(email))
+  .then((_id) => Promise.join(AccessToken.getAccessToken(_id), Counter.getCounters(_id)))
+  .then(([{ accessToken }, counters]) => res.send({ accessToken, counters }))
+  .catch((err) => { console.log(err); res.sendStatus(500); });
 
-
-router.get('/', authCheck, (req, res) => {
-  res.sendStatus(200);
 });
 
 module.exports = router;

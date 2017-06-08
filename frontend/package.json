@@ -8,15 +8,35 @@
     "jwt-decode": "^2.2.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-modal": "^1.7.7",
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "react-toolbox": "2.0.0-beta.8",
+    "react-toolbox-themr": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "toolbox": "react-toolbox-themr"
+  },
+  "reactToolbox": {
+    "include": [
+      "BUTTON",
+      "DROPDOWN",
+      "INPUT"
+    ],
+    "customProperties": {
+      "animation-duration": "0.3s",
+      "color-primary": "var(--palette-teal-600)",
+      "color-accent": "var(--palette-red-500)",
+      "color-accent-dark": "var(--palette-pink-700)",
+      "color-primary-contrast": "var(--color-dark-contrast)",
+      "color-accent-contrast": "var(--color-dark-contrast)"
+    },
+    "output": "src/assets/react-toolbox"
   }
 }

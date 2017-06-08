@@ -1,7 +1,14 @@
 import mongoose from 'mongoose';
+import Promise from 'bluebird';
 
 import logger from '../logger';
 import helpers from './helpers';
+
+
+function setupPromises() {
+  mongoose.Promise = global.Promise;
+}
+
 
 function setupDBConn() {
   const {
@@ -13,7 +20,7 @@ function setupDBConn() {
   } = helpers.getDBVars();
 
   const conn = `mongodb://${user}:${pwd}@${domain}:${port}/${db}`;
-  mongoose.connect(conn);
+  mongoose.connect(conn, {server: { poolSize: 5 }});
 }
 
 
@@ -42,6 +49,7 @@ function setupDBEvents() {
 
 
 function initDB() {
+  setupPromises();
   setupDBConn();
   setupDBEvents();
 }

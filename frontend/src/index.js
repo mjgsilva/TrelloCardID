@@ -7,7 +7,11 @@ import Dashboard from './components/Dashboard';
 import CallbackHandler from './components/Callback';
 import { isLoggedIn } from './utils/AuthService';
 
+import './reset.css';
 import './index.css';
+import './assets/react-toolbox/theme.css';
+import theme from './assets/react-toolbox/theme.js';
+import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -24,6 +28,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 const Root = () => {
   return (
+    <ThemeProvider theme={theme}>
     <div className='container'>
       <Router>
         <div>
@@ -33,6 +38,7 @@ const Root = () => {
       </div>
       </Router>
     </div>
+  </ThemeProvider>
   )
 }
 

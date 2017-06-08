@@ -1,18 +1,18 @@
 import React from 'react';
 
 import Navbar from './Navbar';
-import { isLoggedIn, getUser } from '../utils/AuthService';
+import { getUser } from '../utils/AuthService';
 
-const { name, email, picture } = getUser();
+const NavbarContainer = ({ apiKey }) => {
 
-const NavbarContainer = () => {
+  const { name, email, picture } = getUser();
 
   return (
     <Navbar
-      isLoggedIn={isLoggedIn()}
       name={name}
       email={email}
       pictureUrl={picture}
+      apiKey={apiKey}
     />
   );
 

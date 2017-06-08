@@ -2,17 +2,12 @@
 
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import express from 'express';
 import expressWinston from 'express-winston';
-import jwt from 'express-jwt';
-import jwks from 'jwks-rsa';
 import path from 'path';
 import winston from 'winston';
 
 import setupAPI from './api/index';
-
-dotenv.config();
 
 
 function setupLogger(app: Object): void {

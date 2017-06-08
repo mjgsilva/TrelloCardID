@@ -1,13 +1,60 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.board-container {
+  height: 100vh;
+  background-color: #F8F8FA;
+  padding: 40px;
+}
+
+.btn {
+  background-color: #008E8F !important;
+  color: white !important;
+  cursor: pointer;
+}
+
+.login-btn {
+  font-size: 32px;
+  height: 80px;
+  width: 160px;
+  border-radius: 8px;
+}
+
+.logo {
+  color: white;
+}
+
+.fw {
+  min-width: 100%;
+}
+
+.fw100 {
+  width: 100%;
 }
 
 .navbar {
-  height: 80px;
-  background-color: #00A699;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  border-bottom: 1px solid #C7C6C4;
+  font-size: 14px;
+}
 
+.navbar a {
+  color: white;
 }
 
 .navbar ul {
@@ -16,17 +63,155 @@ body {
   list-style-type: none;
 }
 
-.fw {
-  width: 100% !important;
+a {
+  text-decoration: none;
 }
 
-.fr {
-  float: right;
+.avatar-wrapper {
+  display: flex;
+  align-items: center;
+  color: #C7C6C4;
 }
 
 .post-avatar {
-  height: 48px;
-  width: 48px;
+  height: 60px;
+  width: 60px;
   border-radius: 50px;
-  border: azure 2px solid
+  margin-left: 16px;
+}
+
+.api-key-area {
+  display: flex;
+  align-items: center;
+}
+
+.api-key-area .api-key-label {
+  color: #C7C6C4;
+  padding-right: 6px;
+}
+
+.api-key-area .api-key {
+  color: #008E8F;
+  padding-right: 6px;
+}
+
+.api-key-area .api-tag {
+  padding: 5px 8px;
+  color: white;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.api-key-area .api-verified {
+  background-color: #008E8F;
+}
+
+.api-key-area .api-verified:before {
+  content: 'verified'
+}
+
+.api-key-area .api-nokey {
+  background-color: #FF8B8B;
+  cursor: pointer;
+}
+
+.api-key-area .api-nokey:before {
+  content: 'missing';
+}
+
+.bt-br {
+  position: fixed !important;
+  bottom: 10px;
+  right: 10px;
+}
+
+.bt-tr {
+  position: fixed !important;
+  top: 10px;
+  right: 10px;
+}
+
+.modal {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.board-insert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 450px;
+  margin: auto;
+}
+
+.board-insert-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 30px 0;
+}
+
+.board-name [data-react-toolbox='input'] {
+  margin: 0 5px;
+}
+
+.board-input {
+  margin: 0 5px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.card {
+  position: relative;
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+}
+
+.card-close {
+  position: absolute !important;
+  top: -25px !important;
+  right: -25px !important;
+}
+
+.card .card-title {
+  font-size: 20px;
+}
+
+.card .card-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+.card .card-info-item {
+  width: 50%;
+  text-align: center;
+}
+
+.card .card-info-item-description {
+  margin-bottom: 10px;
 }

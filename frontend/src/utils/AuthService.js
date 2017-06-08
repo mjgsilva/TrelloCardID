@@ -83,19 +83,17 @@ export function setIdToken() {
 
 
 export function isLoggedIn() {
-  const idToken = getIdToken();
-  return !!idToken && !isTokenExpired(idToken);
+  const accessToken = getAccessToken();
+  return !!accessToken && !isTokenExpired(accessToken);
 }
 
 
 export function getUser() {
   const idToken = getIdToken();
-  const profile = idToken && decode(idToken);
+  const { email, name, picture } = idToken && decode(idToken);
 
   return {
-    email: profile && profile.email || 'email@example.org',
-    name: profile && profile.name || 'My Name',
-    picture: profile && profile.picture || 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/00/005fdd00e729c2dd08feaa3bf2f74e8c9029872c.jpg'
+    email, name, picture
   };
 }
 
