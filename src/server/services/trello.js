@@ -26,7 +26,7 @@ Trello.prototype.setup = function setup() {
 
   const key = process.env.TRELLO_KEY || '';
   const secret = process.env.TRELLO_OAUTH_SECRET || '';
-  const appDomain = process.env.APP_DOMAIN || '';
+  const appDomain = process.env.MY_DOMAIN || '';
   const loginCallback = process.env.TRELLO_CALLBACK || '';
 
   self.oauth = new OAuth(

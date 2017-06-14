@@ -30,6 +30,9 @@ function setupUtils(app: Object): void {
   app.use(cors());
 }
 
+function setupStaticFiles(app: Object): void {
+  app.use(express.static(path.resolve(__dirname, '..', 'public')));
+}
 
 function setupErrorHandling(app: Object): void {
   app.use((req, res, next) => {
@@ -49,6 +52,7 @@ function setupErrorHandling(app: Object): void {
 
 
 function setupMiddleware(app: Object): void {
+  //setupStaticFiles(app);
   setupLogger(app);
   setupUtils(app);
   setupAPI(app);

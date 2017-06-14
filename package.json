@@ -11,6 +11,7 @@
     "dev": "PORT=3030 nodemon ./src/index --exec babel-node"
   },
   "dependencies": {
+    "auth0-js": "^8.7.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "bluebird": "^3.5.0",
     "body-parser": "~1.17.1",
@@ -24,6 +25,7 @@
     "install": "^0.10.1",
     "jade": "~1.11.0",
     "jwks-rsa": "^1.1.1",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.9.8",
     "mongoose-auto-increment": "^5.0.1",

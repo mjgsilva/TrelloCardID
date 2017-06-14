@@ -42,6 +42,7 @@ export const getUserInfo = (accessToken, userID) => {
 
   return new Promise((resolve, reject) => {
     request(options, (err, response, body) => {
+
       if (err) reject(err);
 
       const { statusCode, error, email } = JSON.parse(body);

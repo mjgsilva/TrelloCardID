@@ -16,4 +16,5 @@ const jwtHandler = jwt({
   algorithms: ['RS256'],
 });
 
+
 export const authCheck = () => jwtHandler;

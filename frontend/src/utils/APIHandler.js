@@ -2,10 +2,10 @@ import axios from 'axios';
 
 import { getAccessToken } from './AuthService';
 
-const BASE_URL = 'http://localhost:3030';
+const BASE_URL = process.env.REACT_APP_API_DOMAIN;
 
 export function getBoards() {
-  const url = `${BASE_URL}/dashboard`;
+  const url = `${BASE_URL}/me`;
   return getRequest(url);
 }
 
@@ -33,6 +33,8 @@ export function deleteBoard(boardID) {
   return deleteRequest(url);
 }
 
+
+//TODO: Handle errors
 function getRequest(url) {
   const headers =  {
     headers: { Authorization: `Bearer ${getAccessToken()}` }
@@ -44,6 +46,7 @@ function getRequest(url) {
 }
 
 
+//TODO: Handle errors
 function postRequest(url, params = {}) {
   const headers =  {
     headers: { Authorization: `Bearer ${getAccessToken()}` }

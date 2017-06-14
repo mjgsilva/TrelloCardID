@@ -6,7 +6,7 @@ import trello from '../../routes/trello';
 
 function setupAPI(app: Object): void {
   app.use('/', index);
-  app.use('/dashboard', dashboard);
+  app.use('/me', dashboard);
   app.use('/trello', trello);
 }
 

@@ -15,7 +15,7 @@ var auth = new auth0.WebAuth({
 export function login() {
   auth.authorize({
     responseType: 'token id_token',
-    redirectUri: process.env.REACT_APP_REDIRECT,
+    redirectUri: `${process.env.REACT_APP_MY_DOMAIN}${process.env.REACT_APP_REDIRECT}`,
     audience: process.env.REACT_APP_AUDIENCE,
     scope: SCOPE
   });
