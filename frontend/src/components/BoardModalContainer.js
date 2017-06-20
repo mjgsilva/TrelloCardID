@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import BoardModal from './BoardModal';
 import { getMyBoards, createNewCounter } from '../utils/APIHandler';
@@ -23,8 +24,10 @@ export default class BoardModalContainer extends Component {
 
 
   onSubmit = (newCounter) => {
+    const { addBoardAndClose } = this.props;
+
     createNewCounter(newCounter)
-    .then((res) => console.log(res));
+    .then((res) => { addBoardAndClose(newCounter); });
   }
 
 
@@ -37,4 +40,10 @@ export default class BoardModalContainer extends Component {
 
     return <BoardModal boards={boards} onSubmit={onSubmit} closeModal={closeModal} />;
   }
+}
+
+
+BoardModalContainer.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  addBoardAndClose: PropTypes.func.isRequired
 }

@@ -14,25 +14,25 @@ const signingKey = process.env.MONGOOSE_ENCRYPT_SIGKEY;
 const authzeroSchema = new mongoose.Schema({
   accessToken: {
     type: String,
-    required: true
+    required: true,
   },
   expiresIn: {
     type: Date,
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
     required: true,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 
 authzeroSchema.plugin(encrypt, { encryptionKey, signingKey });
 
 
-authzeroSchema.statics.getAccessToken = function() {
-  const self = this;
+authzeroSchema.statics.getAccessToken = function () {
+  const Self = this;
 
   return this.findOne()
     .sort({ createdAt: 'desc' })
@@ -41,19 +41,23 @@ authzeroSchema.statics.getAccessToken = function() {
       if (creds && !isTokenExpired(creds.expiresIn)) {
         return Promise.resolve(creds.accessToken);
       }
-      else {
-        return getAccessToken().then(({ accessToken, expiresIn }) => {
-          const creds = new self(
-            { accessToken, expiresIn: addSecondsToDate(expiresIn) }
-          );
-          creds.save().catch((err) => Promise.reject(err));
-          return Promise.resolve(accessToken);
-        })
-        .catch((err) => Promise.reject(err));
 
-      }
+      return getAccessToken().then(({ accessToken, expiresIn }) => {
+        const newCreds = new Self(
+          {
+            accessToken,
+            expiresIn: addSecondsToDate(expiresIn),
+          },
+        );
+
+        return newCreds.save()
+          .then(() => Promise.resolve(accessToken))
+          .catch(err => Promise.reject(err));
+      })
+        .then(accessToken => Promise.resolve(accessToken))
+        .catch(err => Promise.reject(err));
     })
-  .catch((err) => console.log('ERR', err));
+    .catch(() => {});
 };
 
 

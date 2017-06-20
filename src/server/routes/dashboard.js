@@ -18,12 +18,11 @@ router.get('/', authCheck(), (req, res) => {
 
   Authzero
   .getAccessToken()
-  .then((accessToken) => getUserInfo(accessToken, userID))
-  .then((email) => User.getUserID(email))
-  .then((_id) => Promise.join(AccessToken.getAccessToken(_id), Counter.getCounters(_id)))
+  .then(accessToken => getUserInfo(accessToken, userID))
+  .then(email => User.getUserID(email))
+  .then(_id => Promise.join(AccessToken.getAccessToken(_id), Counter.getCounters(_id)))
   .then(([{ accessToken }, counters]) => res.send({ accessToken, counters }))
-  .catch((err) => { console.log(err); res.sendStatus(500); });
-
+  .catch(() => { res.sendStatus(500); });
 });
 
 module.exports = router;

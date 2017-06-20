@@ -22,10 +22,15 @@ const utils = {
 
   changeCardName(name: string, prefix: string, separator: string, counter: number) {
     const cardPrefix = `${prefix}${separator}${counter.toString()}`;
-    return `${cardPrefix} ${name}`;
+    return `${cardPrefix}: ${name}`;
   },
 
-  verifyTrelloWebhookRequest(body: Object, trelloWebhookHeader: string, secret: string, callbackURL: string) {
+  verifyTrelloWebhookRequest(
+    body: Object,
+    trelloWebhookHeader: string,
+    secret: string,
+    callbackURL: string,
+  ) {
     const base64Digest = (s) => {
       return crypto.createHmac('sha1', secret).update(s).digest('base64');
     };
@@ -37,7 +42,7 @@ const utils = {
     const headerHash = base64Digest(trelloWebhookHeader);
 
     return doubleHash === headerHash;
-  }
+  },
 };
 
 module.exports = utils;

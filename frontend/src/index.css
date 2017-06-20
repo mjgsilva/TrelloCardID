@@ -13,7 +13,7 @@ body {
 }
 
 .board-container {
-  height: 100vh;
+  height: calc(100vh - 100px);
   background-color: #F8F8FA;
   padding: 40px;
 }
@@ -208,7 +208,7 @@ a {
 }
 
 .card .card-info-item {
-  width: 50%;
+  width: 33.333%;
   text-align: center;
 }
 

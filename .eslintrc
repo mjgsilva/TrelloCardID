@@ -3,5 +3,8 @@
     "node": true
   },
   "extends": "airbnb",
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "rules": {
+    no-underscore-dangle: "off"
+  }
 }

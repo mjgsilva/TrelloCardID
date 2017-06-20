@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Logo">
+            <g>
+                <g id="Group-8" fill="#E3E3E3">
+                    <path d="M60,-0.000428571428 L9,-0.000428571428 C4.02857143,-0.000428571428 0,4.02814286 0,8.99957143 L0,110.999571 C0,115.971 4.02857143,119.999571 9,119.999571 L111,119.999571 C115.971429,119.999571 120,115.971 120,110.999571 L120,51.4285714 L111.428571,59.9995714 L111.428571,111.428143 L8.57142857,111.428143 L8.57142857,8.571 L51.4391018,8.571 L60,-0.000428571428 Z" id="Fill-2"></path>
+                </g>
+                <text id="123" font-family="AvenirNext-Medium, Avenir Next" font-size="32" font-weight="400" fill="#008E8F">
+                    <tspan x="60.88" y="32">123</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

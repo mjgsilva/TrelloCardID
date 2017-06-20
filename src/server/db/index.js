@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import Promise from 'bluebird';
 
 import logger from '../logger';
 import helpers from './helpers';
@@ -20,7 +19,17 @@ function setupDBConn() {
   } = helpers.getDBVars();
 
   const conn = `mongodb://${user}:${pwd}@${domain}:${port}/${db}`;
-  mongoose.connect(conn, {server: { poolSize: 5 }});
+
+  const opts = {
+    server: {
+      socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 },
+      poolSize: 5,
+    },
+    replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 },
+    },
+  };
+
+  mongoose.connect(conn, opts);
 }
 
 

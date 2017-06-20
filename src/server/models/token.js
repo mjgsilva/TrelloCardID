@@ -10,22 +10,22 @@ const signingKey = process.env.MONGOOSE_ENCRYPT_SIGKEY;
 const tokenSchema = new mongoose.Schema({
   token: {
     type: String,
-    required: true
+    required: true,
   },
   tokenSecret: {
     type: String,
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
     required: true,
-    default: Date.now
+    default: Date.now,
   },
   _owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
-  }
+    required: true,
+  },
 });
 
 
@@ -35,13 +35,13 @@ tokenSchema.index({ token: 1 });
 tokenSchema.plugin(encrypt, {
   encryptionKey,
   signingKey,
-  encryptedFields: ['tokenSecret']
+  encryptedFields: ['tokenSecret'],
 });
 
 
-tokenSchema.statics.getTokenSecret = function(token) {
+tokenSchema.statics.getTokenSecret = function (token) {
   return this.findOne({ token }).exec();
-}
+};
 
 
 module.exports = mongoose.model('Token', tokenSchema);

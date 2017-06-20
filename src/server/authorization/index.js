@@ -17,4 +17,6 @@ const jwtHandler = jwt({
 });
 
 
+/*eslint-disable */
 export const authCheck = () => jwtHandler;
+/*eslint-enable */

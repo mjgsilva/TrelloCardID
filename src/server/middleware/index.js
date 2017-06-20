@@ -30,9 +30,13 @@ function setupUtils(app: Object): void {
   app.use(cors());
 }
 
+
 function setupStaticFiles(app: Object): void {
-  app.use(express.static(path.resolve(__dirname, '..', 'public')));
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.resolve(__dirname, '..', 'public')));
+  }
 }
+
 
 function setupErrorHandling(app: Object): void {
   app.use((req, res, next) => {
@@ -52,7 +56,7 @@ function setupErrorHandling(app: Object): void {
 
 
 function setupMiddleware(app: Object): void {
-  //setupStaticFiles(app);
+  setupStaticFiles(app);
   setupLogger(app);
   setupUtils(app);
   setupAPI(app);

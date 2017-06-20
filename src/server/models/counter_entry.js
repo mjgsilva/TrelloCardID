@@ -3,22 +3,22 @@ import mongoose from 'mongoose';
 const entrySchema = new mongoose.Schema({
   id: {
     type: String,
-    required: true
+    required: true,
   },
   shortID: {
     type: Number,
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
     required: true,
-    default: Date.now
+    default: Date.now,
   },
   _counter: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Counter',
-    required: true
-  }
+    required: true,
+  },
 });
 
 
