@@ -155,11 +155,6 @@ Trello.prototype.updateCard =
       url: `https://api.trello.com/1/cards/${cardID}/?key=${appKey}&token=${userToken}&name=${encodedNewName}`,
     };
 
-    logger.logError(new Error(cardID));
-    logger.logError(new Error(appKey));
-    logger.logError(new Error(userToken));
-    logger.logError(new Error(encodedNewName));
-
     return new Promise((resolve, reject) => {
       request(options, (err, response) => {
         if (err) return reject(err);

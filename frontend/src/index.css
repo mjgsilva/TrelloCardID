@@ -16,6 +16,9 @@ body {
   height: calc(100vh - 100px);
   background-color: #F8F8FA;
   padding: 40px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .btn {
