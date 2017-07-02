@@ -4,7 +4,7 @@ import Button from 'react-toolbox/lib/button/Button';
 const Board = ({ name, separator, counter, id, prefix, deleteMe }) => {
   return (
     <div className='card'>
-      <Button className='card-close' icon='close' floating accent onClick={deleteMe} />
+      <Button className='card-close' icon='close' floating accent mini onClick={deleteMe} />
       <div className='card-title text-center'>{name}</div>
       <div className='card-info'>
         <div className='card-info-item'>

@@ -4,8 +4,10 @@ import Button from 'react-toolbox/lib/button/Button';
 import Board from './Board'
 import NavbarContainer from './NavbarContainer';
 import BoardModalContainer from './BoardModalContainer';
+import Graph from './Graph';
+import BoardActivity from './BoardActivity';
 import { getBoards, deleteBoard } from '../utils/APIHandler';
-import { removeArr } from '../utils/ArrayHelpers';
+import { removeArr, changeDates } from '../utils/ArrayHelpers';
 
 export default class Dashboard extends Component {
 
@@ -14,6 +16,8 @@ export default class Dashboard extends Component {
     this.state = {
       apiKey: null,
       boards: [],
+      stats: [],
+      recentEntries: [],
       showModal: false
     };
   }
@@ -21,14 +25,14 @@ export default class Dashboard extends Component {
 
   componentDidMount() {
     getBoards()
-    .then(({ accessToken, counters }) => {
-      this.setInfo(accessToken, counters);
+    .then(({ accessToken, counters, stats, recentEntries }) => {
+      this.setInfo(accessToken, counters, changeDates(stats), recentEntries.reverse());
     });
   }
 
 
-  setInfo = (accessToken, boards) => {
-    this.setState({ apiKey: accessToken, boards });
+  setInfo = (accessToken, boards, stats, recentEntries) => {
+    this.setState({ apiKey: accessToken, boards, stats, recentEntries });
   }
 
 
@@ -81,7 +85,7 @@ export default class Dashboard extends Component {
 
   render() {
     const {
-      state: { apiKey, boards, showModal },
+      state: { apiKey, boards, stats, recentEntries, showModal },
       setShowModal, renderBoards, addBoardAndClose,
     } = this;
 
@@ -96,7 +100,18 @@ export default class Dashboard extends Component {
           />
         }
         <div className='board-container'>
-          {renderBoards(boards)}
+          <p className='title'>Boards</p>
+          <div className='boards-wrapper mb-40'>
+            {renderBoards(boards)}
+          </div>
+          <p className='title'>Cards Processed</p>
+          <div className='graph-wrapper mb-40'>
+            <Graph stats={stats} />
+          </div>
+          <p className='title'>Board Activity</p>
+          <div className='activity-wrapper mb-40'>
+            <BoardActivity activity={recentEntries} />
+          </div>
         </div>
         <Button className='bt-br btn' icon='add' floating onClick={() => setShowModal(true)}/>
       </div>

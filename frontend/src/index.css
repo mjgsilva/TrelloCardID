@@ -13,12 +13,82 @@ body {
 }
 
 .board-container {
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
   background-color: #F8F8FA;
   padding: 40px;
   display: flex;
+  flex-wrap: wrap;
+}
+
+.boards-wrapper {
+  display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  width: 100%;
+}
+
+.activity-wrapper {
+  width: 100%;
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.graph-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.activity-table {
+  font-size: 14px;
+  display: grid;
+}
+
+.activity-table .table-wrapper {
+  display: grid;
+  grid-column: 2;
+  grid-template-columns: 130px auto;
+  grid-template-rows: 25% 15px auto;
+}
+
+.activity-table .box {
+  padding: 5px;
+  padding-left: 30px;
+}
+
+.fow-300 {
+  font-weight: 300;
+}
+
+.activity-table .table-wrapper:first-of-type {
+  padding-top: 15px;
+}
+
+.activity-table .date {
+  color: #C7C6C4;
+}
+
+.activity-table .board-name {
+  color: #8884d8;
+}
+
+.recharts-wrapper {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 20px;
+  margin: 10px 20px 20px;
+  color: #8884d8;
 }
 
 .btn {
@@ -102,7 +172,7 @@ a {
   padding: 5px 8px;
   color: white;
   border-radius: 3px;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 12px;
 }
 
@@ -198,7 +268,7 @@ a {
 }
 
 .card .card-title {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .card .card-info {
@@ -217,4 +287,12 @@ a {
 
 .card .card-info-item-description {
   margin-bottom: 10px;
+}
+
+.card button {
+  display: none;
+}
+
+.card:hover button {
+  display: block;
 }

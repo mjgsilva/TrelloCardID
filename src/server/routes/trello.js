@@ -25,31 +25,31 @@ router.get('/token', authCheck(), (req, res) => {
   Authzero
   .getAccessToken()
   .then(accessToken => getUserInfo(accessToken, userID))
-    .then((email) => {
-      return trello.login()
-        .then(({ token, tokenSecret, loginURL }) => {
-          User.getUserID(email)
-            .then((user) => {
-              if (!user) {
-                const newUser = new User({ email });
+  .then((email) => {
+    return trello.login()
+      .then(({ token, tokenSecret, loginURL }) => {
+        User.getUserID(email)
+          .then((user) => {
+            if (!user) {
+              const newUser = new User({ email });
 
-                newUser.save()
-                  .then(({ _id }) => {
-                    const newToken = new Token({ token, tokenSecret, _owner: _id });
-                    newToken.save().catch(err => Promise.reject(err));
-                  })
-                  .catch(err => Promise.reject(err));
-              } else {
-                const newToken = new Token({ token, tokenSecret, _owner: user._id });
-                newToken.save().catch(err => Promise.reject(err));
-              }
-            })
-            .catch(err => Promise.reject(err));
+              newUser.save()
+                .then(({ _id }) => {
+                  const newToken = new Token({ token, tokenSecret, _owner: _id });
+                  newToken.save().catch(err => Promise.reject(err));
+                })
+                .catch(err => Promise.reject(err));
+            } else {
+              const newToken = new Token({ token, tokenSecret, _owner: user._id });
+              newToken.save().catch(err => Promise.reject(err));
+            }
+          })
+          .catch(err => Promise.reject(err));
 
-          return Promise.resolve(loginURL);
-        })
-        .catch(err => Promise.reject(err));
-    })
+        return Promise.resolve(loginURL);
+      })
+      .catch(err => Promise.reject(err));
+  })
   .then((loginURL) => { res.send(loginURL); })
   .catch(() => { res.sendStatus(500); });
 });
@@ -204,7 +204,7 @@ router.post('/whcallback', (req, res) => {
       _separator = separator;
       _owner = owner;
 
-      const _entry = new Entry({ id, shortID: idShort, _counter: model.id });
+      const _entry = new Entry({ id, shortID: idShort, _counter: _id });
       return _entry.save().catch(err => Promise.reject(err));
     })
     .then(() => AccessToken.getAccessToken(_owner))

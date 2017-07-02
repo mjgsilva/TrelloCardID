@@ -27,6 +27,8 @@
     "jwks-rsa": "^1.1.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
+    "lodash.minby": "^4.6.0",
+    "moment": "^2.18.1",
     "mongoose": "^4.9.8",
     "mongoose-auto-increment": "^5.0.1",
     "mongoose-encryption": "^1.5.0",

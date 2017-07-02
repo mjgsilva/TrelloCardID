@@ -6,11 +6,13 @@
     "auth0-js": "^8.6.0",
     "axios": "^0.16.1",
     "jwt-decode": "^2.2.0",
+    "moment": "^2.18.1",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-modal": "^1.7.7",
-    "react-router-dom": "^4.1.1"
+    "react-router-dom": "^4.1.1",
+    "recharts": "^1.0.0-alpha.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.7",

@@ -5,8 +5,6 @@ import dotenv from 'dotenv';
 import { OAuth } from 'oauth';
 import Promise from 'bluebird';
 
-import logger from '../logger';
-
 dotenv.config();
 
 const appName = 'Trello Card ID';
