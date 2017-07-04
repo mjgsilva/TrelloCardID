@@ -13,36 +13,34 @@ import './assets/react-toolbox/theme.css';
 import theme from './assets/react-toolbox/theme.js';
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-     isLoggedIn() ? (
-      <Component {...props}/>
-    ) : (
-      <Redirect to={{
-        pathname: '/',
-        state: { from: props.location }
-      }}/>
-    )
-  )}/>
-)
+const PrivateRoute = ({ component: Component, ...rest }) =>
+  <Route
+    {...rest}
+    render={props =>
+      isLoggedIn()
+        ? <Component {...props} />
+        : <Redirect
+            to={{
+              pathname: '/',
+              state: { from: props.location }
+            }}
+          />}
+  />;
 
 const Root = () => {
   return (
     <ThemeProvider theme={theme}>
-    <div className='container'>
-      <Router>
-        <div>
-          <Route exact path="/" component={Landing} />
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-          <Route path="/callback" component={CallbackHandler} />
+      <div className="container">
+        <Router>
+          <div>
+            <Route exact path="/" component={Landing} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <Route path="/callback" component={CallbackHandler} />
+          </div>
+        </Router>
       </div>
-      </Router>
-    </div>
-  </ThemeProvider>
-  )
-}
+    </ThemeProvider>
+  );
+};
 
-ReactDOM.render(
-  <Root />,
-  document.getElementById('root')
-);
+ReactDOM.render(<Root />, document.getElementById('root'));
