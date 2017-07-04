@@ -11,12 +11,8 @@ import moment from 'moment';
  * @returns {array} new array updated
  */
 export function removeArr(arr, idx) {
-  return [
-    ...arr.slice(0, idx),
-    ...arr.slice(idx + 1)
-  ];
+  return [...arr.slice(0, idx), ...arr.slice(idx + 1)];
 }
-
 
 /**
  * Array utils
@@ -26,7 +22,7 @@ export function removeArr(arr, idx) {
  * @returns {array} new array updated
  */
 export function changeDates(arr) {
-  return arr.map((entry) => {
+  return arr.map(entry => {
     const descDay = moment(entry.day).format('D, MMM');
     return { ...entry, day: descDay };
   });
