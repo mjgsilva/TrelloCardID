@@ -44,21 +44,14 @@ entrySchema.statics.getStats = function (userID) {
           preserveNullAndEmptyArrays: false,
         },
       }, {
-        $lookup: {
-          from: 'users',
-          localField: 'users._id',
-          foreignField: '_owner',
-          as: 'user',
-        },
-      }, {
-        $unwind: {
-          path: '$user',
-          preserveNullAndEmptyArrays: false,
-        },
-      }, {
         $match: {
-          'user._id': mongoose.Types.ObjectId(userID._id),
+          'counter._owner': mongoose.Types.ObjectId(userID._id),
           createdAt: { $gte: limit },
+        },
+      }, {
+        $project: {
+          counter: { boardName: 1, _owner: 1 },
+          createdAt: 1,
         },
       }, {
         $group: {
@@ -95,25 +88,13 @@ entrySchema.statics.getRecentEntries = function (userID) {
           preserveNullAndEmptyArrays: false,
         },
       }, {
-        $lookup: {
-          from: 'users',
-          localField: 'users._id',
-          foreignField: '_owner',
-          as: 'user',
-        },
-      }, {
-        $unwind: {
-          path: '$user',
-          preserveNullAndEmptyArrays: false,
-        },
-      }, {
         $match: {
-          'user._id': mongoose.Types.ObjectId(userID._id),
+          'counter._owner': mongoose.Types.ObjectId(userID._id),
           createdAt: { $gte: limit },
         },
       }, {
         $project: {
-          counter: { boardName: 1 },
+          counter: { boardName: 1, _owner: 1 },
           createdAt: 1,
         },
       },
