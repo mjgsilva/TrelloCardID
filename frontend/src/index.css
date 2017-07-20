@@ -22,9 +22,14 @@ body {
 
 .boards-wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.boards-wrapper:after {
+  content: "";
+  flex: auto;
 }
 
 .activity-wrapper {
@@ -258,7 +263,8 @@ a {
   justify-content: center;
   flex-direction: column;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 1rem;
 }
 
 .card-close {
