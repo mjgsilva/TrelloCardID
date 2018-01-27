@@ -12,7 +12,7 @@ export default class BoardModal extends Component {
     this.state = {
       boardID: null,
       prefix: '',
-      separator: '-',
+      separator: '',
       counter: 1
     };
   }
@@ -26,7 +26,7 @@ export default class BoardModal extends Component {
   };
 
   newCounterValidator = obj => {
-    return Object.values(obj).some(val => val === null || val === '');
+    return Object.values(obj).some(val => val === null);
   };
 
   submitNewCounter = () => {
@@ -70,7 +70,7 @@ export default class BoardModal extends Component {
             <Input
               className="board-input"
               type="text"
-              label="Prefix"
+              label="Prefix (ex: Proj)"
               name="prefix"
               value={prefix}
               onChange={val => inputHandler('prefix', val)}
@@ -78,7 +78,7 @@ export default class BoardModal extends Component {
             <Input
               className="board-input"
               type="text"
-              label="Separator"
+              label="Separator (ex: -)"
               name="separator"
               value={separator}
               onChange={val => inputHandler('separator', val)}

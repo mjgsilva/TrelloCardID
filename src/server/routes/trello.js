@@ -120,7 +120,7 @@ router.post('/counter', authCheck(), (req, res) => {
     return trello.getBoard(boardID, accessToken, accessTokenSecret);
   })
   .then((board) => {
-    const { counter, prefix, separator } = req.body;
+    const { counter, prefix , separator } = req.body;
     const { id: boardTrelloID, name: boardName } = board;
 
     const _counter = new Counter({ prefix, counter, separator, boardTrelloID, boardName, _owner });
