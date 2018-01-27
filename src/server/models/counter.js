@@ -15,7 +15,8 @@ const counterSchema = new mongoose.Schema({
   },
   prefix: {
     type: String,
-    required: true,
+//  required: true,
+    default: '',
   },
   counter: {
     type: Number,
@@ -24,7 +25,8 @@ const counterSchema = new mongoose.Schema({
   },
   separator: {
     type: String,
-    required: true,
+//  required: true,
+    default: '',
   },
   webhookID: {
     type: String,

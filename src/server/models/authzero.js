@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import encrypt from 'mongoose-encryption';
 import dotenv from 'dotenv';
 
+import logger from '../logger';
 import { addSecondsToDate, isTokenExpired } from '../utils';
 import { getAccessToken } from '../services/authzero';
 
@@ -57,7 +58,10 @@ authzeroSchema.statics.getAccessToken = function () {
         .then(accessToken => Promise.resolve(accessToken))
         .catch(err => Promise.reject(err));
     })
-    .catch(() => {});
+    .catch((err) => {
+      logger.logError(new Error(err));
+      return Promise.reject(err);
+    });
 };
 
 

@@ -84,6 +84,10 @@ router.get('/callback', (req, res) => {
 router.get('/me', authCheck(), (req, res) => {
   const { sub: userID } = req.user;
 
+  logger.logInfo('ME IN')
+
+  Authzero.getAccessToken().then(at => console.log('attt ', at)).catch((err) => console.log('rererer ', err));
+
   Authzero
   .getAccessToken()
   .then(accessToken => getUserInfo(accessToken, userID))
@@ -92,8 +96,10 @@ router.get('/me', authCheck(), (req, res) => {
   .then(({ accessToken, accessTokenSecret }) => trello.getMyBoards(accessToken, accessTokenSecret))
   .then((boards) => { res.send(boards); })
   .catch((err) => {
+    console.log('ERR > ', err);
+    logger.logInfo(err.message);
     logger.logError(new Error(err));
-    res.sendStatus(500);
+    res.status(500).send(err.message);
   });
 });
 
@@ -120,7 +126,7 @@ router.post('/counter', authCheck(), (req, res) => {
     return trello.getBoard(boardID, accessToken, accessTokenSecret);
   })
   .then((board) => {
-    const { counter, prefix, separator } = req.body;
+    const { counter, prefix , separator } = req.body;
     const { id: boardTrelloID, name: boardName } = board;
 
     const _counter = new Counter({ prefix, counter, separator, boardTrelloID, boardName, _owner });
