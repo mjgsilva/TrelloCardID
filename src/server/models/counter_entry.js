@@ -66,7 +66,10 @@ entrySchema.statics.getStats = function (userID) {
           entries: { $sum: 1 },
         },
       },
-    ]).exec();
+    ])
+    .cursor()
+    .exec()
+    .toArray();
 };
 
 entrySchema.statics.getRecentEntries = function (userID) {
@@ -98,7 +101,10 @@ entrySchema.statics.getRecentEntries = function (userID) {
           createdAt: 1,
         },
       },
-    ]).exec();
+    ])
+    .cursor()
+    .exec()
+    .toArray();
 };
 
 module.exports = mongoose.model('Entry', entrySchema);

@@ -3,6 +3,7 @@
 import express from 'express';
 import Promise from 'bluebird';
 
+import logger from '../logger';
 import Authzero from '../models/authzero';
 import User from '../models/user';
 import AccessToken from '../models/access_token';
@@ -28,15 +29,16 @@ router.get('/', authCheck(), (req, res) => {
     Entry.getStats(_id),
     Entry.getRecentEntries(_id),
   ))
-  .then(([{ accessToken }, counters, stats, recentEntries]) => res.send(
-    {
+  .then(([{ accessToken }, counters, stats, recentEntries]) => res.send({
       accessToken,
       counters,
       stats: utils.createEntriesArr(stats),
       recentEntries,
-    },
-  ))
-  .catch(() => { res.sendStatus(500); });
+    }))
+  .catch(err => {
+    logger.logError(new Error(err));
+    res.sendStatus(500);
+  });
 });
 
 module.exports = router;
